@@ -1,0 +1,9 @@
+{
+  "user": {
+    "name": "cwq",
+    "password": "624041"
+  },
+  "db": {
+    "path": "~/data"
+  }
+}

@@ -1,0 +1,61 @@
+@import 'contextMenu.less';
+
+.host-tree {
+}
+
+.tree-view {
+  overflow-y: hidden;
+  text-align: left;
+}
+
+.tree-view-folder, .host {
+  /* immediate child of .tree-view, for styling convenience */
+  user-select: none;
+  display: flex;
+  align-items: center;
+}
+
+.icon {
+  display: inline-block;
+  margin-right: 8px;
+}
+
+.icon.arrow {
+  background: url('folderArrow.svg') no-repeat;
+  width: 10px;
+  height: 6px;
+}
+
+.icon.folder {
+  background: url('folder.svg') no-repeat;
+  width: 18px;
+  height: 16px;
+}
+
+.icon.terminal {
+  background: url('terminal.svg') no-repeat;
+  width: 18px;
+  height: 14px;
+}
+
+
+.host-tree-row {
+  cursor: pointer;
+  height: 22px;
+
+  &:hover {
+    background-color: #707070;
+  }
+
+  &.selected {
+    background-color: #4e4e4e;
+    color: #ffffff;
+  }
+
+  &.collapsed {
+    .icon.arrow {
+      background: url('folderCollapsedArrow.svg') no-repeat;
+      height: 12px;
+    }
+  }
+}
