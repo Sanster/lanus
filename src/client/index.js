@@ -1,25 +1,26 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
-import App from './app'
-import LoginPage from './pages/loginPage'
-import { AppContainer } from 'react-hot-loader'
+import { createStore, applyMiddleware } from 'redux'
+import { Provider } from 'react-redux'
+import thunkMiddleware from 'redux-thunk'
+import { createLogger } from 'redux-logger'
 
-ReactDOM.render(
-  <AppContainer>
-   <App />
-  </AppContainer>,
-  document.getElementById('root')
+import 'typeface-roboto'
+
+import rootReducer from './reducers/rootReducer'
+import App from './App'
+
+const store = createStore(
+  rootReducer,
+  applyMiddleware(
+    thunkMiddleware, // lets us dispatch() functions
+    createLogger()
+  )
 )
 
-
-
-//   // 测试删除 session
-//   const backUpSession = allSessions.get(sessionId2Delete)
-//   allSessions.delete(sessionId2Delete)
-//   allFolders.get(sessionGroupId).children.delete(sessionId2Delete)
-//   const deletedTree = getFolderTree(allFolders)
-//   console.log(tree)
-
-//   // 测试添加 session
-//   allSessions.set(backUpSession._id, backUpSession)
-//   allFolders.get(backUpSession.sessionGroupId).children.set(backUpSession._id, backUpSession)
+ReactDOM.render(
+  <Provider store={store}>
+    <App />
+  </Provider>,
+  document.getElementById('root')
+)
